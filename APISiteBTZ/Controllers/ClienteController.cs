@@ -1,5 +1,6 @@
 ﻿using APISiteBTZ.Data;
 using APISiteBTZ.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.CompilerServices;
@@ -8,6 +9,7 @@ namespace APISiteBTZ.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ClienteController : ControllerBase
     {
         private readonly DataContext dataContext;
@@ -17,6 +19,7 @@ namespace APISiteBTZ.Controllers
             dataContext = _dataContext;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<List<Cliente>>> GetAllFromUser(int codigoUsuario, bool isMaster)
         {
